@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="filename">/home/pij/apache-tomcat-7.0.55/logs/document-online.log</Property>
+	</Properties>
+	
+	<Appenders>
+		<Appender type="File" name="File" filename="${filename}">
+			<Layout type="PatternLayout">
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</Layout>
+		</Appender>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="File"/>
+		</Root>
+	</Loggers>
+</Configuration>

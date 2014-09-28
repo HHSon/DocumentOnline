@@ -1,0 +1,70 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+ version="2.5">
+
+	<listener>
+		<listener-class>doc.online.net.listener.DocOnlineContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>client-register</servlet-name>
+		<servlet-class>doc.online.net.servlet.ClientRegisterServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>client-register</servlet-name>
+		<url-pattern>/cregister</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>client-login</servlet-name>
+		<servlet-class>doc.online.net.servlet.ClientLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>client-login</servlet-name>
+		<url-pattern>/clogin</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>client</servlet-name>
+		<servlet-class>doc.online.net.servlet.ClientServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>client</servlet-name>
+		<url-pattern>/client</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>client-filter</filter-name>
+		<filter-class>doc.online.net.filter.ClientLoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>client-filter</filter-name>
+		<servlet-name>client</servlet-name>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>client-logout</servlet-name>
+		<servlet-class>doc.online.net.servlet.ClientLogoutServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>client-logout</servlet-name>
+		<url-pattern>/clogout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>diagnostic</servlet-name>
+		<servlet-class>doc.online.net.servlet.DiagnosticServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>diagnostic</servlet-name>
+		<url-pattern>/diagnostic/*</url-pattern>
+	</servlet-mapping>
+</web-app>
+

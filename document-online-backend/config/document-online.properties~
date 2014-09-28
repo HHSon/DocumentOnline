@@ -1,0 +1,4 @@
+project.name=Document Online
+project.version=1.0.0-SNAPSHOT
+# database mode, value: memory, sql_db, ldap
+database.mode=memory

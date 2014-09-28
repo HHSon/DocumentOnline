@@ -1,0 +1,26 @@
+API Parameters
+
+============== Register Client ========================
+Request:
+	POST http://locahost:8080/document-online/cregister
+	Request Header:
+		Authorization: {authorization-string}
+	Form data:
+		name: <client name>
+		desc: <client description>
+		group: <client group>
+		homepage: <client homepage>opt
+	
+Response:
+	{
+		status: OK,
+		message: "client registration success",
+		info: {
+			client_id: <client id>,
+			client_secret: <client secret>,
+			name: <client name>,
+			desc: <client description>,
+			group: <client group>,
+			homepage: <client homepage>
+		}
+	}
