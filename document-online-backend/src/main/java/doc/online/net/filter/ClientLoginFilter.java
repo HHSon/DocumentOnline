@@ -2,7 +2,8 @@ package doc.online.net.filter;
 
 import doc.online.model.LoggedInClient;
 import doc.online.net.helper.SessionElementName;
-import doc.online.net.response.UnauthorizedErrorResponse;
+import doc.online.net.response.ErrorResponse;
+import doc.online.net.response.ResponseCode;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -27,7 +28,7 @@ public class ClientLoginFilter implements Filter {
 
 		if (loggedInClient == null || loggedInClient.isExpired()) {
 			response.getWriter().write(
-				new UnauthorizedErrorResponse("client does not login").toString());
+				new ErrorResponse(ResponseCode.UNAUTHORIZED, "client does not login").toString());
 			return;
 		}
 

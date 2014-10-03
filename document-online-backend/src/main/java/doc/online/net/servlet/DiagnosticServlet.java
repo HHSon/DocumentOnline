@@ -20,7 +20,7 @@ public class DiagnosticServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
 
-		if (pathInfo.contains("health")) {
+		if (pathInfo != null && pathInfo.contains("health")) {
 			health(req, resp);
 			return;
 		}
