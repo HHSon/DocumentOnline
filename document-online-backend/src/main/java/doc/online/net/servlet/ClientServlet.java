@@ -1,6 +1,5 @@
 package doc.online.net.servlet;
 
-import doc.online.model.Client;
 import doc.online.model.LoggedInClient;
 import doc.online.net.helper.RequestName;
 import doc.online.net.helper.SessionElementName;
@@ -45,7 +44,7 @@ public class ClientServlet extends HttpServlet {
 
 		if (loggedInClient == null) {
 			out.println(new CommonResponse(
-				ResponseCode.ERROR, "cannot get client information").toString());
+				ResponseCode.ERROR, "Cannot get client information. Login required").toString());
 			return;
 		}
 

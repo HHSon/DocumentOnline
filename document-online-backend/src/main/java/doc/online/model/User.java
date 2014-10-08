@@ -1,5 +1,6 @@
 package doc.online.model;
 
+import doc.online.util.StringUtil;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -30,10 +31,7 @@ public class User {
 	}
 
 	public void setLoginId(String loginId) {
-		if (loginId != null) {
-			loginId = loginId.trim();
-		}
-		this.loginId = loginId;
+		this.loginId = loginId.trim();
 	}
 
 	public String getPassword() {
@@ -41,7 +39,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.trim();
 	}
 
 	public String getName() {
@@ -49,10 +47,7 @@ public class User {
 	}
 
 	public void setName(String name) {
-		if (name != null) {
-			name = name.trim();
-		}
-		this.name = name;
+		this.name = name.trim();
 	}
 
 	public String getEmail() {
@@ -60,10 +55,7 @@ public class User {
 	}
 
 	public void setEmail(String email) {
-		if (email != null) {
-			email = email.trim();
-		}
-		this.email = email;
+		this.email = email.trim();
 	}
 
 	public Date getBirthday() {

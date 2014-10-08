@@ -1,12 +1,11 @@
 package doc.online.util;
 
 import doc.online.dao.ClientDAO;
-import doc.online.util.Configuration;
 import java.util.Random;
 
 public final class Generator {
 	public static String generateNewClientId() {
-		return generateRamdomNumericString(Configuration.getClientIdLength());
+		return generateRamdomNumericString(Configuration.getClientIdStringLength());
 	}
 
 	public static String generateNewClientSecret() {

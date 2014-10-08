@@ -33,9 +33,8 @@ public class ClientDAO implements IClientDAO {
 
 	@Override
 	public boolean registerClient(Client newClient) {
-		if (newClient == null || newClient.verify() == false)
-			throw new IllegalArgumentException("newClient verify failed");
-
+		if (newClient == null)
+			throw new NullPointerException("newClient is null");
 		return clientDAO.registerClient(newClient);
 	}
 

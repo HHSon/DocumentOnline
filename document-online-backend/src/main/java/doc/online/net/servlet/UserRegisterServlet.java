@@ -34,7 +34,6 @@ public class UserRegisterServlet extends HttpServlet {
 
 	private User getRegisterUser(HttpServletRequest req, PrintWriter out)
 			throws ServletException, IOException {
-
-		return null;
+		throw new RuntimeException("Unsupported");
 	}
 }

@@ -2,7 +2,6 @@ package doc.online.net.servlet;
 
 import doc.online.dao.ClientDAO;
 import doc.online.model.Client;
-import doc.online.model.LoggedInClient;
 import doc.online.net.helper.RequestName;
 import doc.online.net.response.ClientRegisterResponse;
 import doc.online.net.response.CommonResponse;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +29,7 @@ public class ClientRegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		resp.setContentType("application/json");
 		PrintWriter out = resp.getWriter();
-		Client newClient = getClientInfo(req, out);
+		Client newClient = getNewClient(req, out);
 
 		if (newClient == null) {
 			return;
@@ -41,24 +39,19 @@ public class ClientRegisterServlet extends HttpServlet {
 			ClientDAO clientDAO = new ClientDAO();
 			if (clientDAO.registerClient(newClient) == true) {
 				ClientRegisterResponse o = new ClientRegisterResponse(
-					ResponseCode.OK,
-					"client register success",
-					newClient);
+						ResponseCode.OK, "client register success", newClient);
 				out.println(o.toString());
 				return;
 			}
 		} catch (IllegalArgumentException ex) {
-			logger.error(ex.getMessage());
+			logger.error("Failed to create new client: ".concat(ex.getMessage()));
 		}
 
-		CommonResponse respObj = new CommonResponse(
-			ResponseCode.ERROR,
-			"cannot create new client");
-
-		out.println(respObj.toString());
+		CommonResponse o = new CommonResponse(ResponseCode.ERROR, "cannot create new client");
+		out.println(o.toString());
 	}
 
-	private Client getClientInfo(final HttpServletRequest req, PrintWriter out) {
+	private Client getNewClient(HttpServletRequest req, PrintWriter out) {
 		String authorization = (String) req.getHeader(RequestName.AUTHORIZATION);
 		if (StringUtil.isNullOrEmpty(authorization) || !isAuthorizationValid(authorization)) {
 			logger.debug("Authorization failed: " + authorization);
@@ -93,6 +86,12 @@ public class ClientRegisterServlet extends HttpServlet {
 			out.println(o.toString());
 			return null;
 		}
+		
+		clientName = clientName.trim();
+		description = description.trim();
+		group = group.trim();
+		if (homepage != null)
+			homepage = homepage.trim();
 
 		ClientDAO clientDAO = new ClientDAO();
 
@@ -114,15 +113,13 @@ public class ClientRegisterServlet extends HttpServlet {
 		}
 
 		Client newClient = new Client();
-
+		newClient.setClientId(Generator.generateNewClientId());
+		newClient.setClientSecret(Generator.generateNewClientSecret());
 		newClient.setName(clientName);
-		newClient.setDescription(clientName);
+		newClient.setDescription(description);
 		newClient.setGroup(group);
 		newClient.setHomepage(homepage);
 		newClient.setDateRegistered(new Date());
-
-		newClient.setClientId(Generator.generateNewClientId());
-		newClient.setClientSecret(Generator.generateNewClientSecret());
 
 		return newClient;
 	}

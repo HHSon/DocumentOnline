@@ -4,7 +4,6 @@ import doc.online.util.Configuration;
 import java.io.IOException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.ServletException;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -19,7 +18,7 @@ public class DocOnlineContextListener implements ServletContextListener {
 		try {
 			Configuration.init();
 		} catch (IOException ex) {
-			throw new RuntimeException(ex.getMessage());
+			throw new RuntimeException(ex);
 		} catch (IllegalArgumentException ex) {
 			throw ex;
 		}

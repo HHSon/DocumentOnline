@@ -19,11 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 
 public class ClientLoginServlet extends HttpServlet {
-	private static final Logger logger = LogManager.getLogger(ClientLoginServlet.class);
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

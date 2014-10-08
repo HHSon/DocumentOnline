@@ -22,8 +22,6 @@ public class Client {
 	}
 
 	public void setClientId(String clientId) {
-		if (StringUtil.isNullOrEmpty(clientId))
-			throw new IllegalArgumentException("clientId is null or empty");
 		this.clientId = clientId;
 	}
 
@@ -32,8 +30,6 @@ public class Client {
 	}
 
 	public void setClientSecret(String clientSecret) {
-		if (StringUtil.isNullOrEmpty(clientSecret))
-			throw new IllegalArgumentException("clientSecret is null or empty");
 		this.clientSecret = clientSecret;
 	}
 
@@ -42,8 +38,6 @@ public class Client {
 	}
 
 	public void setName(String name) {
-		if (StringUtil.isNullOrEmpty(name))
-			throw new IllegalArgumentException("client name is null or empty");
 		this.name = name;
 	}
 
@@ -52,8 +46,6 @@ public class Client {
 	}
 
 	public void setDescription(String desc) {
-		if (StringUtil.isNullOrEmpty(desc))
-			throw new IllegalArgumentException("description is null or empty");
 		this.description = desc;
 	}
 
@@ -62,9 +54,6 @@ public class Client {
 	}
 
 	public void setDateRegistered(Date dateRegistered) {
-		if (dateRegistered == null)
-			throw new IllegalArgumentException("dateRegistered is null");
-
 		this.dateRegistered = dateRegistered;
 	}
 
@@ -73,8 +62,6 @@ public class Client {
 	}
 
 	public void setGroup(String group) {
-		if (StringUtil.isNullOrEmpty(group))
-			throw new IllegalArgumentException("group is null");
 		this.group = group;
 	}
 
@@ -84,27 +71,5 @@ public class Client {
 
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
-	}
-
-	public boolean verify() {
-		if (StringUtil.isNullOrEmpty(clientId))
-			return false;
-
-		if (StringUtil.isNullOrEmpty(clientSecret))
-			return false;
-
-		if (StringUtil.isNullOrEmpty(name))
-			return false;
-
-		if (StringUtil.isNullOrEmpty(description))
-			return false;
-
-		if (dateRegistered == null)
-			return false;
-
-		if (StringUtil.isNullOrEmpty(group))
-			return false;
-
-		return true;
 	}
 }
